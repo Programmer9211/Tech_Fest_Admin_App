@@ -1,12 +1,13 @@
 import 'package:get/get.dart';
 
+import '../modules/authentication_screen/bindings/authentication_screen_binding.dart';
+import '../modules/authentication_screen/views/authentication_screen_view.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
-import 'package:tech_fest_admin_app/app/modules/authentication_screen/bindings/authentication_screen_binding.dart';
-import 'package:tech_fest_admin_app/app/modules/authentication_screen/views/authentication_screen_view.dart';
-
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/profile_screen/bindings/profile_screen_binding.dart';
+import '../modules/profile_screen/views/profile_screen_view.dart';
 import '../modules/signin_screen/bindings/signin_screen_binding.dart';
 import '../modules/signin_screen/views/signin_screen_view.dart';
 import '../modules/signup_screen/bindings/signup_screen_binding.dart';
@@ -44,6 +45,11 @@ class AppPages {
       name: _Paths.AUTHENTICATION_SCREEN,
       page: () => AuthenticationScreenView(),
       binding: AuthenticationScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE_SCREEN,
+      page: () => ProfileScreenView(),
+      binding: ProfileScreenBinding(),
     ),
   ];
 }
