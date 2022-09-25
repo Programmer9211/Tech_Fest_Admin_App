@@ -120,7 +120,9 @@ class SignupScreenView extends GetView<SignupScreenController> {
               ),
               KButton(
                 title: "SIGN UP",
-                onTap: () {},
+                onTap: () {
+                  controller.onSignup();
+                },
               ),
               SizedBox(
                 height: 70.h,

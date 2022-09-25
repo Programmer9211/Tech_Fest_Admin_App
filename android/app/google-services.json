@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "615859378000",
+    "project_id": "tech-fest-b5a33",
+    "storage_bucket": "tech-fest-b5a33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615859378000:android:f246db7bf272a0ea7dbe55",
+        "android_client_info": {
+          "package_name": "com.u2bc.company.tech_fest_admin_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "615859378000-p4g8276hqe4d7vd193pedslr20hdqk0n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr4DUo_linBHKFr-adsOW5PyB-WUMTkPw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "615859378000-p4g8276hqe4d7vd193pedslr20hdqk0n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615859378000:android:c7f33729fb8d01367dbe55",
+        "android_client_info": {
+          "package_name": "com.u2bytecode.com.tech_fest_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "615859378000-p4g8276hqe4d7vd193pedslr20hdqk0n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr4DUo_linBHKFr-adsOW5PyB-WUMTkPw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "615859378000-p4g8276hqe4d7vd193pedslr20hdqk0n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
