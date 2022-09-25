@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
 
+import 'package:tech_fest_admin_app/app/modules/authentication_screen/bindings/authentication_screen_binding.dart';
+import 'package:tech_fest_admin_app/app/modules/authentication_screen/views/authentication_screen_view.dart';
+
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/signin_screen/bindings/signin_screen_binding.dart';
@@ -29,6 +32,11 @@ class AppPages {
       name: _Paths.SIGNUP_SCREEN,
       page: () => SignupScreenView(),
       binding: SignupScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.AUTHENTICATION_SCREEN,
+      page: () => AuthenticationScreenView(),
+      binding: AuthenticationScreenBinding(),
     ),
   ];
 }
