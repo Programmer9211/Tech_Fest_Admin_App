@@ -6,6 +6,8 @@ import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/participants_list_screen/bindings/participants_list_screen_binding.dart';
+import '../modules/participants_list_screen/views/participants_list_screen_view.dart';
 import '../modules/profile_screen/bindings/profile_screen_binding.dart';
 import '../modules/profile_screen/views/profile_screen_view.dart';
 import '../modules/signin_screen/bindings/signin_screen_binding.dart';
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.PROFILE_SCREEN,
       page: () => ProfileScreenView(),
       binding: ProfileScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.PARTICIPANTS_LIST_SCREEN,
+      page: () => ParticipantsListScreenView(),
+      binding: ParticipantsListScreenBinding(),
     ),
   ];
 }
