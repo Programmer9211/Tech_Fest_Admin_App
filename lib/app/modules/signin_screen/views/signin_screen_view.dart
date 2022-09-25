@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:tech_fest_admin_app/app/routes/app_pages.dart';
 
 import '../../../../const/app_const/app_color.dart';
 import '../../../data/widgets/custom_button.dart';
@@ -80,22 +81,31 @@ class SigninScreenView extends GetView<SigninScreenController> {
               SizedBox(
                 height: 18.h,
               ),
-              KButton(title: "LOGIN", onTap: () {}),
+              KButton(
+                  title: "LOGIN",
+                  onTap: () {
+                    controller.onSign();
+                  }),
               SizedBox(
                 height: 140.h,
               ),
-              RichText(
-                text: TextSpan(
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500),
-                  children: [
-                    TextSpan(text: "New User? "),
-                    TextSpan(
-                        text: "Register Here",
-                        style: TextStyle(color: AppColor.textColor))
-                  ],
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(Routes.SIGNUP_SCREEN);
+                },
+                child: RichText(
+                  text: TextSpan(
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w500),
+                    children: [
+                      TextSpan(text: "New User? "),
+                      TextSpan(
+                          text: "Register Here",
+                          style: TextStyle(color: AppColor.textColor))
+                    ],
+                  ),
                 ),
               )
             ],

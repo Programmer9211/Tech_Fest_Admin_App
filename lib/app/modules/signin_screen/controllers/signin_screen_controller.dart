@@ -11,19 +11,11 @@ class SigninScreenController extends GetxController {
   final TextEditingController name = TextEditingController();
 //836841
   final isChecked = false;
-  void onSignup() async {
-    if (email.text.isNotEmpty &&
-        password.text.isNotEmpty &&
-        name.text.isNotEmpty) {
+  void onSign() async {
+    if (email.text.isNotEmpty && password.text.isNotEmpty) {
       Indicator.showLoading();
-      await AuthenticationService().userRegistration(
-        email.text,
-        password.text,
-        name.text,
-      );
-
+      await AuthenticationService().userLogin(email.text, password.text);
       Indicator.closeLoading();
-
       Get.offAllNamed(Routes.AUTHENTICATION_SCREEN);
     }
   }
