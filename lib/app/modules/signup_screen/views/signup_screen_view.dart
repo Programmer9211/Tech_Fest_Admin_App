@@ -128,16 +128,20 @@ class SignupScreenView extends GetView<SignupScreenController> {
                 height: 70.h,
               ),
               RichText(
-                  text: TextSpan(
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w500),
-                      children: [
+                text: TextSpan(
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w500),
+                  children: [
                     TextSpan(text: "Already have an account? "),
                     TextSpan(
-                        text: "Sign In", style: TextStyle(color: Colors.blue))
-                  ]))
+                      text: "Sign In",
+                      style: TextStyle(color: Colors.blue),
+                    )
+                  ],
+                ),
+              ),
             ],
           ),
         ),
