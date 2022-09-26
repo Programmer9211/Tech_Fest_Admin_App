@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -86,13 +84,13 @@ class HomeView extends GetView<HomeController> {
                   child: Text(
                     "Create Event",
                     style: TextStyle(
-                      fontSize: 14.sp,
+                      fontSize: 15.sp,
                       color: Colors.white,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4.r),
+                    borderRadius: BorderRadius.circular(8.r),
                     color: AppColor.buttonColor,
                     boxShadow: const [
                       BoxShadow(
