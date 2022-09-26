@@ -20,6 +20,9 @@ class CreateEventController extends GetxController {
   final TextEditingController eventVenueController = TextEditingController();
   final TextEditingController registrationFees = TextEditingController();
   final TextEditingController teamMemberCount = TextEditingController();
+  final TextEditingController contactDetails = TextEditingController();
+  final TextEditingController emailId = TextEditingController();
+  final TextEditingController websiteLink = TextEditingController();
   late DateTimeModel eventStartTimings, eventEndTimings;
 
   RxBool isTeam = false.obs;
@@ -82,9 +85,9 @@ class CreateEventController extends GetxController {
         eventEndTimings: eventEndTimings,
         participants: 0,
         eventContactDetails: EventContactDetails(
-          phoneNo: "9999999999",
-          email: "event@gmail.com",
-          websiteLink: "www.website.com",
+          phoneNo: contactDetails.text,
+          email: emailId.text,
+          websiteLink: websiteLink.text,
         ),
       );
 

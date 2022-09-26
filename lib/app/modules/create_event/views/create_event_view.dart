@@ -123,9 +123,24 @@ class CreateEventView extends GetView<CreateEventController> {
                     );
                   }),
                 ),
+
                 KTextField(
                     hintText: "Event Venue (location)",
                     controller: controller.eventVenueController),
+                SizedBox(height: 12.h),
+
+                KTextField(
+                    hintText: "Contact No.",
+                    controller: controller.contactDetails),
+                SizedBox(height: 12.h),
+
+                KTextField(
+                    hintText: "Email Id", controller: controller.emailId),
+                SizedBox(height: 12.h),
+
+                KTextField(
+                    hintText: "Website Link",
+                    controller: controller.websiteLink),
                 SizedBox(height: 12.h),
 
                 GetBuilder<CreateEventController>(
