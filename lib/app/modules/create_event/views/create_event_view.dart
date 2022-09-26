@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tech_fest_admin_app/app/data/widgets/custom_button.dart';
 import 'package:tech_fest_admin_app/app/data/widgets/custom_textfield.dart';
+import 'package:tech_fest_admin_app/app/models/event_model.dart';
+import 'package:tech_fest_admin_app/const/app_const/participant_detals_list.dart';
 
 import '../controllers/create_event_controller.dart';
 
@@ -32,6 +34,7 @@ class CreateEventView extends GetView<CreateEventController> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 12.h),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
                   height: 200.h,
@@ -81,13 +84,16 @@ class CreateEventView extends GetView<CreateEventController> {
                         color: Color(0xff000000),
                       ),
                     ),
-                    Switch(
-                        value: controller.isTeam,
+                    Obx(() {
+                      return Switch(
+                        value: controller.isTeam.value,
                         focusColor: Colors.black,
                         activeColor: Colors.black,
                         onChanged: (value) {
-                          value != controller.isTeam;
-                        })
+                          controller.isTeam.value = !controller.isTeam.value;
+                        },
+                      );
+                    }),
                   ],
                 ),
                 KTextField(
@@ -120,66 +126,40 @@ class CreateEventView extends GetView<CreateEventController> {
                     ],
                   ),
                 ),
-                CheckboxListTile(
-                  title: Text(
-                      "Participant's Name",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontFamily: "ubuntu",
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff000000),
-                      ),
-                    ),
-                    value: controller.isParticipantName,
-                    onChanged: (value) {
-                      value != controller.isParticipantName;
-                    }),
-                CheckboxListTile(
-                    title: Text(
-                      "Phone Number",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontFamily: "ubuntu",
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff000000),
-                      ),
-                    ),
-                    value: controller.isParticipantName,
-                    onChanged: (value) {
-                      value != controller.isParticipantName;
-                    }),
+                GetBuilder<CreateEventController>(builder: (cont) {
+                  return Flexible(
+                    child: ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: cont.participantDetails.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          ParticipantsDetails details =
+                              participantsDetails[index];
 
-                CheckboxListTile(
-                    title: Text(
-                      "Institution Name",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontFamily: "ubuntu",
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff000000),
-                      ),
-                    ),
-                    value: controller.isParticipantName,
-                    onChanged: (value) {
-                      value != controller.isParticipantName;
-                    }),
-                CheckboxListTile(
-                    title: Text(
-                      "Institution ID",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontFamily: "ubuntu",
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff000000),
-                      ),
-                    ),
-                    value: controller.isParticipantName,
-                    onChanged: (value) {
-                      value != controller.isParticipantName;
-                    }),
-
-              KButton(title: "Launch Event", onTap: (){}),
-              
+                          return CheckboxListTile(
+                              title: Text(
+                                details.title,
+                                style: TextStyle(
+                                  fontSize: 14.sp,
+                                  fontFamily: "ubuntu",
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff000000),
+                                ),
+                              ),
+                              value: details.isEnabled,
+                              onChanged: (value) {
+                                cont.onSeletedAndUnSelectCalue(
+                                  value ?? false,
+                                  index,
+                                );
+                              });
+                        }),
+                  );
+                }),
+                KButton(
+                  title: "Launch Event",
+                  onTap: () {},
+                ),
               ],
             ),
           ),
