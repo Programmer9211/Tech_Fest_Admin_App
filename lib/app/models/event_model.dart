@@ -1,3 +1,5 @@
+import 'package:tech_fest_admin_app/app/models/date_time_model.dart';
+
 class EventModel {
   late String id;
   late String uid;
@@ -6,6 +8,8 @@ class EventModel {
   late String eventDescription;
   late int teamMembers;
   late EventLocation eventLocation;
+  late DateTimeModel eventStartTimings;
+  late DateTimeModel eventEndTimings;
   late int registrationFees;
   late List<ParticipantsDetails> participantsDetails;
 
@@ -19,6 +23,8 @@ class EventModel {
     required this.eventLocation,
     required this.registrationFees,
     required this.participantsDetails,
+    required this.eventEndTimings,
+    required this.eventStartTimings,
   });
 
   EventModel.fromJson(Map<String, dynamic> json) {
@@ -30,6 +36,8 @@ class EventModel {
     teamMembers = json['team_members'];
     eventLocation = EventLocation.fromJson(json['event_location']);
     registrationFees = json['registration_fees'];
+    eventStartTimings = DateTimeModel.fromJson(json['event_start_timings']);
+    eventEndTimings = DateTimeModel.fromJson(json['event_end_timings']);
     if (json['participants_details'] != null) {
       participantsDetails = [];
       List<Map<String, dynamic>> list = json['participants_details'];
@@ -51,6 +59,8 @@ class EventModel {
     data['registration_fees'] = registrationFees;
     data['participants_details'] =
         participantsDetails.map((v) => v.toJson()).toList();
+    data['event_start_timings'] = eventStartTimings.toJson();
+    data['event_end_timings'] = eventEndTimings.toJson();
 
     return data;
   }

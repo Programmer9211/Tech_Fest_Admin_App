@@ -66,12 +66,20 @@ class CreateEventView extends GetView<CreateEventController> {
                   ),
                 ),
                 KTextField(
-                    hintText: "Event Title",
-                    controller: controller.eventTitleController),
+                  hintText: "Event Title",
+                  controller: controller.eventTitleController,
+                ),
                 SizedBox(height: 12.h),
                 KTextField(
-                    hintText: "Event Description",
-                    controller: controller.eventTitleController),
+                  hintText: "Event Description",
+                  controller: controller.eventDescController,
+                ),
+                SizedBox(height: 12.h),
+                KTextField(
+                  hintText: "Registration Fee (0 = Free)",
+                  controller: controller.registrationFees,
+                  isNeumericKeyboard: true,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -96,13 +104,61 @@ class CreateEventView extends GetView<CreateEventController> {
                     }),
                   ],
                 ),
+                Obx(
+                  (() {
+                    return Visibility(
+                      visible: controller.isTeam.value,
+                      child: Column(
+                        children: [
+                          KTextField(
+                            hintText: "Team Size",
+                            controller: controller.teamMemberCount,
+                            isNeumericKeyboard: true,
+                          ),
+                          SizedBox(
+                            height: 12.h,
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+                ),
                 KTextField(
                     hintText: "Event Venue (location)",
-                    controller: controller.eventTitleController),
+                    controller: controller.eventVenueController),
                 SizedBox(height: 12.h),
-                KTextField(
-                    hintText: "Event Timings",
-                    controller: controller.eventTitleController),
+
+                GetBuilder<CreateEventController>(
+                  builder: (controller) {
+                    return Text(
+                        "Event Start Timing : ${controller.eventStartTimings.time},${controller.eventStartTimings.day}-${controller.eventStartTimings.month}-${controller.eventStartTimings.year}");
+                  },
+                ),
+
+                TextButton(
+                  onPressed: () {
+                    controller.onAddEventTimings(context, true);
+                  },
+                  child: Text("Add Event Start Timing"),
+                ),
+
+                GetBuilder<CreateEventController>(
+                  builder: (controller) {
+                    return Text(
+                        "Event End Timing : ${controller.eventEndTimings.time},${controller.eventEndTimings.day}-${controller.eventEndTimings.month}-${controller.eventEndTimings.year}");
+                  },
+                ),
+
+                TextButton(
+                  onPressed: () {
+                    controller.onAddEventTimings(context, false);
+                  },
+                  child: Text("Add Event End Timing"),
+                ),
+
+                // KTextField(
+                //     hintText: "Event Timings",
+                //     controller: controller.eventTitleController),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 12.0.h),
                   child: Row(

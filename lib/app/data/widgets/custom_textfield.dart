@@ -7,14 +7,19 @@ import '../../../const/app_const/app_color.dart';
 class KTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
+  final bool isNeumericKeyboard;
   const KTextField(
-      {super.key, required this.hintText, required this.controller});
+      {super.key,
+      this.isNeumericKeyboard = false,
+      required this.hintText,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
       cursorColor: Colors.blue,
+      keyboardType: isNeumericKeyboard ? TextInputType.number : null,
       maxLines: 1,
       decoration: InputDecoration(
         fillColor: Color(0xffF3F3F3),
@@ -22,9 +27,10 @@ class KTextField extends StatelessWidget {
         isDense: true,
         hintText: hintText,
         hintStyle: TextStyle(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w500,
-            color: AppColor.hintText),
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w500,
+          color: AppColor.hintText,
+        ),
         focusColor: Colors.blue,
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blue, width: 2),

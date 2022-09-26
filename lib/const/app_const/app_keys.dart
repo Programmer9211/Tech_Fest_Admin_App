@@ -19,6 +19,10 @@ abstract class AppKeys {
   static const failed = "failed";
   static const sucess = "sucess";
   static const invites = "invites";
+  static const day = "day";
+  static const month = "month";
+  static const year = "year";
+  static const time = "time";
   static const isProfileComplete = "is_profile_complete";
   static const instagramIdLink = "instagram_id_link";
   static const linkdinIdLink = "linkdin_id_link";
