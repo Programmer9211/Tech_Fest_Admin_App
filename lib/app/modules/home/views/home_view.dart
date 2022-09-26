@@ -30,6 +30,15 @@ class HomeView extends GetView<HomeController> {
           color: Colors.black,
         ),
         actions: [
+          IconButton(
+            onPressed: () {
+              Get.toNamed(Routes.CREATE_EVENT);
+            },
+            icon: Icon(
+              Icons.add,
+              color: Colors.black,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: GestureDetector(

@@ -36,11 +36,57 @@ class CreateEventView extends GetView<CreateEventController> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  height: 200.h,
-                  decoration: BoxDecoration(
-                      color: Color(0xffD9d9d9),
-                      borderRadius: BorderRadius.all(Radius.circular(8.r))),
+                GestureDetector(
+                  onTap: () {
+                    controller.pickImage();
+                  },
+                  child:
+                      GetBuilder<CreateEventController>(builder: (controller) {
+                    return Container(
+                      // color: Colors.red,
+                      height: 200.h,
+                      width: 430.w,
+                      child: PageView.builder(
+                        itemCount: controller.pickedImageFile.length,
+                        onPageChanged: controller.onPageChanged,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              // height: 300.h,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  // scale: 3.0,
+                                  image: FileImage(
+                                    controller.pickedImageFile[index],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  }),
+                ),
+                GetBuilder<CreateEventController>(
+                  builder: (controller) {
+                    return SizedBox(
+                      height: size.height / 30,
+                      width: size.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          for (int i = 0; i < controller.isSelected.length; i++)
+                            Obx(() {
+                              return indicator(
+                                  size, controller.isSelected[i].value);
+                            })
+                        ],
+                      ),
+                    );
+                  },
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.0.h),
@@ -237,5 +283,19 @@ class CreateEventView extends GetView<CreateEventController> {
             ),
           ),
         ));
+  }
+
+  Widget indicator(Size size, bool isSelected) {
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: Container(
+        height: isSelected ? size.height / 80 : size.height / 100,
+        width: isSelected ? size.height / 80 : size.height / 100,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.black,
+        ),
+      ),
+    );
   }
 }
