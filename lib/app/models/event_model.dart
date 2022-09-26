@@ -6,8 +6,8 @@ class EventModel {
   late String eventDescription;
   late int teamMembers;
   late EventLocation eventLocation;
-  late String registrationFees;
-  late List<String> participantDetails;
+  late int registrationFees;
+  late List<ParticipantsDetails> participantsDetails;
 
   EventModel({
     required this.id,
@@ -18,7 +18,7 @@ class EventModel {
     required this.teamMembers,
     required this.eventLocation,
     required this.registrationFees,
-    required this.participantDetails,
+    required this.participantsDetails,
   });
 
   EventModel.fromJson(Map<String, dynamic> json) {
@@ -30,7 +30,13 @@ class EventModel {
     teamMembers = json['team_members'];
     eventLocation = EventLocation.fromJson(json['event_location']);
     registrationFees = json['registration_fees'];
-    participantDetails = json['participant_details'];
+    if (json['participants_details'] != null) {
+      participantsDetails = [];
+      List<Map<String, dynamic>> list = json['participants_details'];
+      for (var v in list) {
+        participantsDetails.add(ParticipantsDetails.fromJson(v));
+      }
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -43,7 +49,9 @@ class EventModel {
     data['team_members'] = teamMembers;
     data['event_location'] = eventLocation.toJson();
     data['registration_fees'] = registrationFees;
-    data['participant_details'] = participantDetails;
+    data['participants_details'] =
+        participantsDetails.map((v) => v.toJson()).toList();
+
     return data;
   }
 }
@@ -75,13 +83,27 @@ class EventLocation {
 }
 
 class ParticipantsDetails {
-  final String id;
-  final String title;
-  bool isEnabled;
+  late String id;
+  late bool isEnabled;
+  late String title;
 
   ParticipantsDetails({
     required this.id,
     required this.isEnabled,
     required this.title,
   });
+
+  ParticipantsDetails.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    isEnabled = json['is_enabled'];
+    title = json['title'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {};
+    data['id'] = id;
+    data['is_enabled'] = isEnabled;
+    data['title'] = title;
+    return data;
+  }
 }

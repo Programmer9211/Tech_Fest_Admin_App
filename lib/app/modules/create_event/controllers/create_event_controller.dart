@@ -17,6 +17,7 @@ class CreateEventController extends GetxController {
   final TextEditingController teamMemberCount = TextEditingController();
 
   RxBool isTeam = false.obs;
+  List<String> eventImageUrl = [];
 
   List<ParticipantsDetails> participantDetails = [];
   @override
@@ -42,8 +43,16 @@ class CreateEventController extends GetxController {
         Indicator.showSnackBar("Please Enter a valid member count");
       }
 
-      List<Location> locations =
-          await locationFromAddress("Gronausestraat 710, Enschede");
+      List<Location> locations = [];
+
+      try {
+        locations = await locationFromAddress("Gronausestraat 710, Enschede");
+
+        print(locations.first.latitude);
+        print(locations.first.longitude);
+      } catch (e) {
+        print(e);
+      }
 
       EventModel eventModel = EventModel(
         id: generateId(),
@@ -57,8 +66,8 @@ class CreateEventController extends GetxController {
           lat: locations.first.latitude,
           long: locations.first.longitude,
         ),
-        registrationFees: "0",
-        participantDetails: [],
+        registrationFees: 0,
+        participantsDetails: participantDetails,
       );
 
       await CreateEventFunctions.createEventDetails(eventModel);

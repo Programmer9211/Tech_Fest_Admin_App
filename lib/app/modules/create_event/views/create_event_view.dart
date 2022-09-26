@@ -158,7 +158,9 @@ class CreateEventView extends GetView<CreateEventController> {
                 }),
                 KButton(
                   title: "Launch Event",
-                  onTap: () {},
+                  onTap: () {
+                    controller.onLaunchEvents();
+                  },
                 ),
               ],
             ),
