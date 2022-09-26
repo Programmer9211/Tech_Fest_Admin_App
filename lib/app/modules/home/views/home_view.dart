@@ -68,7 +68,8 @@ class HomeView extends GetView<HomeController> {
                       itemCount: controller.eventModelList.length,
                       itemBuilder: (context, index) {
                         return EventTile(
-                            model: controller.eventModelList[index]);
+                          model: controller.eventModelList[index],
+                        );
                       }),
                 );
               } else {

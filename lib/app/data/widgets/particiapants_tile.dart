@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tech_fest_admin_app/app/models/user_model.dart';
 
 class ParticipantsTile extends StatelessWidget {
-  const ParticipantsTile({super.key});
+  final UserModel model;
+  const ParticipantsTile({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class ParticipantsTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Nitin Singh",
+              model.name,
               style: TextStyle(
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w500,
@@ -42,7 +44,7 @@ class ParticipantsTile extends StatelessWidget {
               height: 4,
             ),
             Text(
-              "Registration ID : 452776484",
+              "Registration ID : ${model.registrationId}",
               style: TextStyle(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w500,

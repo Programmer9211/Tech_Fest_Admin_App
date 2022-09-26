@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
-
 import '../../../data/widgets/particiapants_tile.dart';
 import '../controllers/participants_list_screen_controller.dart';
 
@@ -46,18 +44,31 @@ class ParticipantsListScreenView
         padding: EdgeInsets.symmetric(
           horizontal: 14.w,
         ),
-        child: ListView.builder(
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  ParticipantsTile(),
-                ],
+        child: GetBuilder<ParticipantsListScreenController>(
+          builder: (controller) {
+            if (controller.participantsList.isNotEmpty) {
+              return ListView.builder(
+                itemCount: controller.participantsList.length,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      ParticipantsTile(
+                        model: controller.participantsList[index],
+                      ),
+                    ],
+                  );
+                },
               );
-            }),
+            } else {
+              return Center(
+                child: Text("No registered Participants Available"),
+              );
+            }
+          },
+        ),
       ),
     );
   }

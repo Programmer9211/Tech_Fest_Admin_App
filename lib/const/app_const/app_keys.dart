@@ -28,4 +28,5 @@ abstract class AppKeys {
   static const linkdinIdLink = "linkdin_id_link";
   static const twitterIdLink = "twitter_id_link";
   static const githubIdLink = "github_id_link";
+  static const participantList = "participant_list";
 }
