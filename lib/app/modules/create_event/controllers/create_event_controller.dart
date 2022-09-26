@@ -81,6 +81,11 @@ class CreateEventController extends GetxController {
         eventStartTimings: eventEndTimings,
         eventEndTimings: eventEndTimings,
         participants: 0,
+        eventContactDetails: EventContactDetails(
+          phoneNo: "9999999999",
+          email: "event@gmail.com",
+          websiteLink: "www.website.com",
+        ),
       );
 
       await CreateEventFunctions.createEventDetails(eventModel);

@@ -11,6 +11,7 @@ class EventModel {
   late EventLocation eventLocation;
   late DateTimeModel eventStartTimings;
   late DateTimeModel eventEndTimings;
+  late EventContactDetails eventContactDetails;
   late int registrationFees;
   late List<ParticipantsDetails> participantsDetails;
 
@@ -25,6 +26,7 @@ class EventModel {
     required this.registrationFees,
     required this.participantsDetails,
     required this.eventEndTimings,
+    required this.eventContactDetails,
     required this.eventStartTimings,
     required this.participants,
   });
@@ -41,6 +43,8 @@ class EventModel {
     eventStartTimings = DateTimeModel.fromJson(json['event_start_timings']);
     eventEndTimings = DateTimeModel.fromJson(json['event_end_timings']);
     participants = json['participants'];
+    eventContactDetails =
+        EventContactDetails.fromJson(json['event_contact_details']);
     if (json['participants_details'] != null) {
       participantsDetails = [];
       List list = json['participants_details'];
@@ -64,6 +68,7 @@ class EventModel {
         participantsDetails.map((v) => v.toJson()).toList();
     data['event_start_timings'] = eventStartTimings.toJson();
     data['event_end_timings'] = eventEndTimings.toJson();
+    data['event_contact_details'] = eventContactDetails.toJson();
     data['participants'] = participants;
 
     return data;
@@ -118,6 +123,32 @@ class ParticipantsDetails {
     data['id'] = id;
     data['is_enabled'] = isEnabled;
     data['title'] = title;
+    return data;
+  }
+}
+
+class EventContactDetails {
+  late String phoneNo;
+  late String email;
+  late String websiteLink;
+
+  EventContactDetails({
+    required this.phoneNo,
+    required this.email,
+    required this.websiteLink,
+  });
+
+  EventContactDetails.fromJson(Map<String, dynamic> json) {
+    phoneNo = json['phone_no'];
+    email = json['email'];
+    websiteLink = json['website_link'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {};
+    data['phone_no'] = phoneNo;
+    data['email'] = email;
+    data['website_link'] = websiteLink;
     return data;
   }
 }
