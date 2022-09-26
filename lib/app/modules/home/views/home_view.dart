@@ -23,12 +23,6 @@ class HomeView extends GetView<HomeController> {
             color: Color(0xff000000),
           ),
         ),
-        titleSpacing: 1,
-        leadingWidth: 50,
-        leading: Icon(
-          Icons.arrow_back_ios_new,
-          color: Colors.black,
-        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -37,6 +31,7 @@ class HomeView extends GetView<HomeController> {
             icon: Icon(
               Icons.add,
               color: Colors.black,
+              size: 28.sp,
             ),
           ),
           Padding(

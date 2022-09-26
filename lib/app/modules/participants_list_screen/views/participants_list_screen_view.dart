@@ -22,9 +22,14 @@ class ParticipantsListScreenView
         ),
         titleSpacing: 1,
         leadingWidth: 50,
-        leading: Icon(
-          Icons.arrow_back_ios_new,
-          color: Colors.black,
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.black,
+          ),
         ),
         actions: [
           Padding(
