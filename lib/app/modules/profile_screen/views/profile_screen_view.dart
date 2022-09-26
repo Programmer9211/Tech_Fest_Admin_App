@@ -28,42 +28,48 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
         leadingWidth: 50,
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: Stack(
-          children: [
-            Positioned(
-              top: 150,
-              width: 338.w,
-              child: Container(
-                height: 220,
-                width: 360.w,
-                decoration: BoxDecoration(
-                  color: AppColor.blocks,
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 95,
-              left: 124,
-              child: Align(
-                alignment: Alignment.topCenter,
+      body: GetBuilder<ProfileScreenController>(builder: (controller) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: Stack(
+            children: [
+              Positioned(
+                top: 150,
+                width: 338.w,
                 child: Container(
-                  height: 120.h,
-                  width: 120.w,
+                  height: 220,
+                  width: 360.w,
                   decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 3.w,
-                      ),
-                      shape: BoxShape.circle),
-                  child: CircleAvatar(backgroundColor: AppColor.blocks),
+                    color: AppColor.blocks,
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  child: Text(
+                      "${controller.coordinatorModel.email} ${controller.coordinatorModel.name}"),
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
+              Positioned(
+                top: 95,
+                left: 124,
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    height: 120.h,
+                    width: 120.w,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 3.w,
+                        ),
+                        shape: BoxShape.circle),
+                    child: CircleAvatar(
+                      backgroundColor: AppColor.blocks,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }
