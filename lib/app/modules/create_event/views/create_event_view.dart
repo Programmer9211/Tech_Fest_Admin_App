@@ -28,6 +28,18 @@ class CreateEventView extends GetView<CreateEventController> {
               color: Color(0xff000000),
             ),
           ),
+          titleSpacing: 1,
+          leadingWidth: 50,
+          leading: InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: Icon(
+              Icons.arrow_back_ios_new,
+              color: Colors.black,
+              size: 22.sp,
+            ),
+          ),
           elevation: 0.0,
         ),
         body: SingleChildScrollView(
@@ -192,7 +204,12 @@ class CreateEventView extends GetView<CreateEventController> {
                 GetBuilder<CreateEventController>(
                   builder: (controller) {
                     return Text(
-                        "Event Start Timing : ${controller.eventStartTimings.time},${controller.eventStartTimings.day}-${controller.eventStartTimings.month}-${controller.eventStartTimings.year}");
+                      "Event Start Timing : ${controller.eventStartTimings.time},${controller.eventStartTimings.day}-${controller.eventStartTimings.month}-${controller.eventStartTimings.year}",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    );
                   },
                 ),
 
@@ -200,13 +217,24 @@ class CreateEventView extends GetView<CreateEventController> {
                   onPressed: () {
                     controller.onAddEventTimings(context, true);
                   },
-                  child: Text("Add Event Start Timing"),
+                  child: Text(
+                    "Add Event Start Timing",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
 
                 GetBuilder<CreateEventController>(
                   builder: (controller) {
                     return Text(
-                        "Event End Timing : ${controller.eventEndTimings.time},${controller.eventEndTimings.day}-${controller.eventEndTimings.month}-${controller.eventEndTimings.year}");
+                      "Event End Timing : ${controller.eventEndTimings.time},${controller.eventEndTimings.day}-${controller.eventEndTimings.month}-${controller.eventEndTimings.year}",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    );
                   },
                 ),
 
@@ -214,7 +242,13 @@ class CreateEventView extends GetView<CreateEventController> {
                   onPressed: () {
                     controller.onAddEventTimings(context, false);
                   },
-                  child: Text("Add Event End Timing"),
+                  child: Text(
+                    "Add Event End Timing",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
 
                 // KTextField(
@@ -273,6 +307,9 @@ class CreateEventView extends GetView<CreateEventController> {
                         }),
                   );
                 }),
+                SizedBox(
+                  height: 10.h,
+                ),
                 KButton(
                   title: "Launch Event",
                   onTap: () {
