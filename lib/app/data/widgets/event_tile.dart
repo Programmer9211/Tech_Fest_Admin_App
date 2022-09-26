@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../const/app_const/app_color.dart';
+import 'package:tech_fest_admin_app/app/models/event_model.dart';
 
 class EventTile extends StatelessWidget {
-  const EventTile({Key? key}) : super(key: key);
+  final EventModel model;
+  const EventTile({Key? key, required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class EventTile extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Event Name",
+                          model.eventTitle,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 24.sp,
@@ -47,7 +47,7 @@ class EventTile extends StatelessWidget {
                           height: 3.h,
                         ),
                         Text(
-                          "Slogan description goes here",
+                          model.eventDescription,
                           style: TextStyle(
                             color: Color(0x99000000),
                             fontSize: 13.sp,
@@ -69,7 +69,7 @@ class EventTile extends StatelessWidget {
                             children: [
                               TextSpan(text: "Participants: "),
                               TextSpan(
-                                text: "965",
+                                text: model.participants.toString(),
                                 style: TextStyle(
                                   color: Color(0xff000000),
                                   fontSize: 16.sp,
@@ -113,7 +113,7 @@ class EventTile extends StatelessWidget {
                 height: 2.h,
               ),
               Text(
-                "Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+                model.eventLocation.address,
                 style: TextStyle(
                     color: Color(0x99000000),
                     fontWeight: FontWeight.w500,
@@ -147,7 +147,7 @@ class EventTile extends StatelessWidget {
                 height: 2.h,
               ),
               Text(
-                "Start at 7:00 AM",
+                "Start at ${model.eventStartTimings.time} AM on ${model.eventStartTimings.day}-${model.eventStartTimings.month}-${model.eventStartTimings.year}",
                 style: TextStyle(
                     color: Color(0x99000000),
                     fontWeight: FontWeight.w500,
@@ -187,12 +187,15 @@ class EventTile extends StatelessWidget {
                       width: 85.w,
                       height: 28.h,
                       alignment: Alignment.center,
-                      child: Text("Edit",
-                          style: TextStyle(
-                              fontSize: 12.sp,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "ubuntu")),
+                      child: Text(
+                        "Edit",
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "ubuntu",
+                        ),
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.black,
                         borderRadius: BorderRadius.all(
@@ -207,8 +210,11 @@ class EventTile extends StatelessWidget {
           ),
         ),
         decoration: BoxDecoration(
-            color: Color(0xffD6d6d6),
-            borderRadius: BorderRadius.all(Radius.circular(8.r))),
+          color: Color(0xffD6d6d6),
+          borderRadius: BorderRadius.all(
+            Radius.circular(8.r),
+          ),
+        ),
       ),
     );
   }

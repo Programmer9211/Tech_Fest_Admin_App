@@ -7,6 +7,7 @@ class EventModel {
   late String eventTitle;
   late String eventDescription;
   late int teamMembers;
+  late int participants;
   late EventLocation eventLocation;
   late DateTimeModel eventStartTimings;
   late DateTimeModel eventEndTimings;
@@ -25,6 +26,7 @@ class EventModel {
     required this.participantsDetails,
     required this.eventEndTimings,
     required this.eventStartTimings,
+    required this.participants,
   });
 
   EventModel.fromJson(Map<String, dynamic> json) {
@@ -38,9 +40,10 @@ class EventModel {
     registrationFees = json['registration_fees'];
     eventStartTimings = DateTimeModel.fromJson(json['event_start_timings']);
     eventEndTimings = DateTimeModel.fromJson(json['event_end_timings']);
+    participants = json['participants'];
     if (json['participants_details'] != null) {
       participantsDetails = [];
-      List<Map<String, dynamic>> list = json['participants_details'];
+      List list = json['participants_details'];
       for (var v in list) {
         participantsDetails.add(ParticipantsDetails.fromJson(v));
       }
@@ -61,6 +64,7 @@ class EventModel {
         participantsDetails.map((v) => v.toJson()).toList();
     data['event_start_timings'] = eventStartTimings.toJson();
     data['event_end_timings'] = eventEndTimings.toJson();
+    data['participants'] = participants;
 
     return data;
   }

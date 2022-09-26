@@ -80,6 +80,7 @@ class CreateEventController extends GetxController {
         participantsDetails: participantDetails,
         eventStartTimings: eventEndTimings,
         eventEndTimings: eventEndTimings,
+        participants: 0,
       );
 
       await CreateEventFunctions.createEventDetails(eventModel);
