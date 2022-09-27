@@ -1,9 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:tech_fest_admin_app/app/data/widgets/event_tile.dart';
 import 'package:tech_fest_admin_app/app/routes/app_pages.dart';
 import 'package:tech_fest_admin_app/const/app_const/app_color.dart';
 
@@ -34,7 +33,9 @@ class HomeView extends GetView<HomeController> {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(Routes.PROFILE_SCREEN);
+              },
               child: Container(
                 height: 42.h,
                 width: 28.w,
@@ -59,52 +60,68 @@ class HomeView extends GetView<HomeController> {
               )
             ],
           ),
-          Column(
-            children: [
-              SizedBox(
-                height: 260.h,
-              ),
-              Text(
-                "Organise Your First Event",
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  color: Color(0x99000000),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              SizedBox(
-                height: 14,
-              ),
-              InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.CREATE_EVENT);
-                },
-                child: Container(
-                  height: 44.h,
-                  width: 190.w,
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Create Event",
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
+          GetBuilder<HomeController>(
+            builder: (controller) {
+              if (controller.eventModelList.isNotEmpty) {
+                return Expanded(
+                  child: ListView.builder(
+                      itemCount: controller.eventModelList.length,
+                      itemBuilder: (context, index) {
+                        return EventTile(
+                          model: controller.eventModelList[index],
+                        );
+                      }),
+                );
+              } else {
+                return Column(
+                  children: [
+                    SizedBox(
+                      height: 260.h,
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4.r),
-                    color: AppColor.buttonColor,
-                    boxShadow: const [
-                      BoxShadow(
-                        offset: Offset(4, 4),
-                        blurRadius: 8,
-                        color: Colors.black26,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ],
+                    Text(
+                      "Organise Your First Event",
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        color: Color(0x99000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 14,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Get.toNamed(Routes.CREATE_EVENT);
+                      },
+                      child: Container(
+                        height: 44.h,
+                        width: 190.w,
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Create Event",
+                          style: TextStyle(
+                            fontSize: 15.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.r),
+                          color: AppColor.buttonColor,
+                          boxShadow: const [
+                            BoxShadow(
+                              offset: Offset(4, 4),
+                              blurRadius: 8,
+                              color: Colors.black26,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }
+            },
           ),
         ],
       ),

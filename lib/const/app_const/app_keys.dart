@@ -11,6 +11,7 @@ abstract class AppKeys {
   static const carouselSliderCollection = "carousel_slider_collection";
   static const phoneNumber = "phone_number";
   static const instituteName = "institute_name";
+  static const instituteId = "institute_id";
   static const registrationId = "registration_id";
   static const eventAttended = "event_attended";
   static const profileImage = "profile_image";
@@ -18,5 +19,14 @@ abstract class AppKeys {
   static const failed = "failed";
   static const sucess = "sucess";
   static const invites = "invites";
+  static const day = "day";
+  static const month = "month";
+  static const year = "year";
+  static const time = "time";
   static const isProfileComplete = "is_profile_complete";
+  static const instagramIdLink = "instagram_id_link";
+  static const linkdinIdLink = "linkdin_id_link";
+  static const twitterIdLink = "twitter_id_link";
+  static const githubIdLink = "github_id_link";
+  static const participantList = "participant_list";
 }

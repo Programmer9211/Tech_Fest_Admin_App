@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.u2bc.company.tech_fest_admin_app">
    <application
-        android:label="tech_fest_admin_app"
+        android:label="TF-Admin"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

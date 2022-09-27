@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tech_fest_admin_app/app/data/widgets/custom_button.dart';
 import 'package:tech_fest_admin_app/app/data/widgets/custom_textfield.dart';
+import 'package:tech_fest_admin_app/app/models/event_model.dart';
+import 'package:tech_fest_admin_app/const/app_const/participant_detals_list.dart';
 
 import '../controllers/create_event_controller.dart';
 
@@ -32,6 +34,7 @@ class CreateEventView extends GetView<CreateEventController> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 12.h),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
                   height: 200.h,
@@ -63,12 +66,20 @@ class CreateEventView extends GetView<CreateEventController> {
                   ),
                 ),
                 KTextField(
-                    hintText: "Event Title",
-                    controller: controller.eventTitleController),
+                  hintText: "Event Title",
+                  controller: controller.eventTitleController,
+                ),
                 SizedBox(height: 12.h),
                 KTextField(
-                    hintText: "Event Description",
-                    controller: controller.eventTitleController),
+                  hintText: "Event Description",
+                  controller: controller.eventDescController,
+                ),
+                SizedBox(height: 12.h),
+                KTextField(
+                  hintText: "Registration Fee (0 = Free)",
+                  controller: controller.registrationFees,
+                  isNeumericKeyboard: true,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -81,22 +92,73 @@ class CreateEventView extends GetView<CreateEventController> {
                         color: Color(0xff000000),
                       ),
                     ),
-                    Switch(
-                        value: controller.isTeam,
+                    Obx(() {
+                      return Switch(
+                        value: controller.isTeam.value,
                         focusColor: Colors.black,
                         activeColor: Colors.black,
                         onChanged: (value) {
-                          value != controller.isTeam;
-                        })
+                          controller.isTeam.value = !controller.isTeam.value;
+                        },
+                      );
+                    }),
                   ],
+                ),
+                Obx(
+                  (() {
+                    return Visibility(
+                      visible: controller.isTeam.value,
+                      child: Column(
+                        children: [
+                          KTextField(
+                            hintText: "Team Size",
+                            controller: controller.teamMemberCount,
+                            isNeumericKeyboard: true,
+                          ),
+                          SizedBox(
+                            height: 12.h,
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
                 ),
                 KTextField(
                     hintText: "Event Venue (location)",
-                    controller: controller.eventTitleController),
+                    controller: controller.eventVenueController),
                 SizedBox(height: 12.h),
-                KTextField(
-                    hintText: "Event Timings",
-                    controller: controller.eventTitleController),
+
+                GetBuilder<CreateEventController>(
+                  builder: (controller) {
+                    return Text(
+                        "Event Start Timing : ${controller.eventStartTimings.time},${controller.eventStartTimings.day}-${controller.eventStartTimings.month}-${controller.eventStartTimings.year}");
+                  },
+                ),
+
+                TextButton(
+                  onPressed: () {
+                    controller.onAddEventTimings(context, true);
+                  },
+                  child: Text("Add Event Start Timing"),
+                ),
+
+                GetBuilder<CreateEventController>(
+                  builder: (controller) {
+                    return Text(
+                        "Event End Timing : ${controller.eventEndTimings.time},${controller.eventEndTimings.day}-${controller.eventEndTimings.month}-${controller.eventEndTimings.year}");
+                  },
+                ),
+
+                TextButton(
+                  onPressed: () {
+                    controller.onAddEventTimings(context, false);
+                  },
+                  child: Text("Add Event End Timing"),
+                ),
+
+                // KTextField(
+                //     hintText: "Event Timings",
+                //     controller: controller.eventTitleController),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 12.0.h),
                   child: Row(
@@ -120,66 +182,42 @@ class CreateEventView extends GetView<CreateEventController> {
                     ],
                   ),
                 ),
-                CheckboxListTile(
-                  title: Text(
-                      "Participant's Name",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontFamily: "ubuntu",
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff000000),
-                      ),
-                    ),
-                    value: controller.isParticipantName,
-                    onChanged: (value) {
-                      value != controller.isParticipantName;
-                    }),
-                CheckboxListTile(
-                    title: Text(
-                      "Phone Number",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontFamily: "ubuntu",
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff000000),
-                      ),
-                    ),
-                    value: controller.isParticipantName,
-                    onChanged: (value) {
-                      value != controller.isParticipantName;
-                    }),
+                GetBuilder<CreateEventController>(builder: (cont) {
+                  return Flexible(
+                    child: ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: cont.participantDetails.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          ParticipantsDetails details =
+                              participantsDetails[index];
 
-                CheckboxListTile(
-                    title: Text(
-                      "Institution Name",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontFamily: "ubuntu",
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff000000),
-                      ),
-                    ),
-                    value: controller.isParticipantName,
-                    onChanged: (value) {
-                      value != controller.isParticipantName;
-                    }),
-                CheckboxListTile(
-                    title: Text(
-                      "Institution ID",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontFamily: "ubuntu",
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff000000),
-                      ),
-                    ),
-                    value: controller.isParticipantName,
-                    onChanged: (value) {
-                      value != controller.isParticipantName;
-                    }),
-
-              KButton(title: "Launch Event", onTap: (){}),
-              
+                          return CheckboxListTile(
+                              title: Text(
+                                details.title,
+                                style: TextStyle(
+                                  fontSize: 14.sp,
+                                  fontFamily: "ubuntu",
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff000000),
+                                ),
+                              ),
+                              value: details.isEnabled,
+                              onChanged: (value) {
+                                cont.onSeletedAndUnSelectCalue(
+                                  value ?? false,
+                                  index,
+                                );
+                              });
+                        }),
+                  );
+                }),
+                KButton(
+                  title: "Launch Event",
+                  onTap: () {
+                    controller.onLaunchEvents();
+                  },
+                ),
               ],
             ),
           ),
