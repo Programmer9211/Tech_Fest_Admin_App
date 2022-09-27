@@ -103,7 +103,7 @@ class CreateEventController extends GetxController {
           lat: locations.first.latitude,
           long: locations.first.longitude,
         ),
-        registrationFees: 0,
+        registrationFees: int.parse(registrationFees.text),
         participantsDetails: participantDetails,
         eventStartTimings: eventEndTimings,
         eventEndTimings: eventEndTimings,
