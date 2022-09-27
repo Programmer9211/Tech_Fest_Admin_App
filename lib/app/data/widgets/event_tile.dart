@@ -28,13 +28,22 @@ class EventTile extends StatelessWidget {
                 Row(
                   children: [
                     Container(
-                        height: 98.h,
-                        width: 98.h,
-                        //child : Image.asset(""),
-                        decoration: BoxDecoration(
-                            color: Color(0xff0b0b0b),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.r)))),
+                      height: 98.h,
+                      width: 98.h,
+                      //child : Image.asset(""),
+
+                      decoration: BoxDecoration(
+                        color: Color(0xff0b0b0b),
+                        image: DecorationImage(
+                          image: NetworkImage(
+                            model.eventImages.first,
+                          ),
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8.r),
+                        ),
+                      ),
+                    ),
                     SizedBox(width: 16.w),
                     Expanded(
                       child: Column(
