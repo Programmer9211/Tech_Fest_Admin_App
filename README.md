@@ -2,7 +2,7 @@
 
 Tech Fest - Admin App is a flutter powered application that
 helps a organizer to create an event by mentioning title,
-description, venue, timings, etc.
+description, venue, timings, etc. 
 
 ## Table of contents
 * [Technologies](#technologies)
@@ -22,10 +22,11 @@ It is created with:
 Some of the highlighted features are:
 * Sign In and Sign Up using email
 * Create Events
+* Select individual or team event
 * Check participants list
 
 ## Setup
-1. Go to the [link]().
+1. Go to the [link](https://drive.google.com/file/d/1VhZNgg-8A0cxo-O5IGS2Tprc1x_loypJ/view?usp=sharing).
 2. Download the Admin App.
 3. Install the App
 4. SignUp using email
@@ -40,12 +41,26 @@ Some of the highlighted features are:
 * [firebase_core](https://pub.dev/packages/firebase_core)
 * [cloud_firestore](https://pub.dev/packages/cloud_firestore)
 * [get_storage](https://pub.dev/packages/get_storage)
+* [flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons)
+* [flutter_native_splash](https://pub.dev/packages/flutter_native_splash)
+* [firebase_storage](https://pub.dev/packages/firebase_storage)
 
 ## Demo Video
-Checkout the working of the [Tech Fest - Admin App]().
+Checkout the working of the [Tech Fest - Admin and User App](https://drive.google.com/file/d/16zO8xYs0eB12pje-uNFU5y9YHrssRWJ6/view?usp=sharing).
 
 ## Room for Improvement
-* Profile
+* Profile Screen
+  - Upload User's profile picture
+  - Show User's Details
+* Create Event Screen
+  - Add text "Add Image" or icon "+" on image tile
+* Add location thorugh map
+* Dark Mode
+* Text labels on buttons
+* Add participants detail screen 
+* Edit event details after event creation 
+
+
 
 ## Tech Fest-User App
 * Checkout [Tech Fest - User App](https://github.com/Programmer9211/Tech_Fest_Management)
