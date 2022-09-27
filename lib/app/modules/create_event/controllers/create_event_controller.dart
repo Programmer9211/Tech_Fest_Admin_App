@@ -65,7 +65,9 @@ class CreateEventController extends GetxController {
       int teamMembers = 0;
 
       try {
-        teamMembers = int.parse(teamMemberCount.text);
+        teamMembers = teamMemberCount.text.isNotEmpty
+            ? int.parse(teamMemberCount.text)
+            : 0;
       } catch (e) {
         Indicator.showSnackBar("Please Enter a valid member count");
       }
