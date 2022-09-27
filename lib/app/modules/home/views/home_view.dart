@@ -19,17 +19,22 @@ class HomeView extends GetView<HomeController> {
           "Home",
           style: TextStyle(
             fontSize: 20.sp,
+            fontFamily: "ubuntu",
             fontWeight: FontWeight.w500,
             color: Color(0xff000000),
           ),
         ),
-        titleSpacing: 1,
-        leadingWidth: 50,
-        leading: Icon(
-          Icons.arrow_back_ios_new,
-          color: Colors.black,
-        ),
         actions: [
+          IconButton(
+            onPressed: () {
+              Get.toNamed(Routes.CREATE_EVENT);
+            },
+            icon: Icon(
+              Icons.add,
+              color: Colors.black,
+              size: 28.sp,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: GestureDetector(
@@ -38,7 +43,8 @@ class HomeView extends GetView<HomeController> {
               },
               child: Container(
                 height: 42.h,
-                width: 28.w,
+                width: 30.w,
+                child: Icon(Icons.person, color: Colors.white),
                 decoration: BoxDecoration(
                     color: Color(0xff000000),
                     borderRadius: BorderRadius.all(Radius.circular(8.r))),

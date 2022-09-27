@@ -28,6 +28,18 @@ class CreateEventView extends GetView<CreateEventController> {
               color: Color(0xff000000),
             ),
           ),
+          titleSpacing: 1,
+          leadingWidth: 50,
+          leading: InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: Icon(
+              Icons.arrow_back_ios_new,
+              color: Colors.black,
+              size: 22.sp,
+            ),
+          ),
           elevation: 0.0,
         ),
         body: SingleChildScrollView(
@@ -36,11 +48,57 @@ class CreateEventView extends GetView<CreateEventController> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  height: 200.h,
-                  decoration: BoxDecoration(
-                      color: Color(0xffD9d9d9),
-                      borderRadius: BorderRadius.all(Radius.circular(8.r))),
+                GestureDetector(
+                  onTap: () {
+                    controller.pickImage();
+                  },
+                  child:
+                      GetBuilder<CreateEventController>(builder: (controller) {
+                    return Container(
+                      color: Color(0xffd6d6d6),
+                      height: 200.h,
+                      width: 430.w,
+                      child: PageView.builder(
+                        itemCount: controller.pickedImageFile.length,
+                        onPageChanged: controller.onPageChanged,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              // height: 300.h,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  // scale: 3.0,
+                                  image: FileImage(
+                                    controller.pickedImageFile[index],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  }),
+                ),
+                GetBuilder<CreateEventController>(
+                  builder: (controller) {
+                    return SizedBox(
+                      height: size.height / 30,
+                      width: size.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          for (int i = 0; i < controller.isSelected.length; i++)
+                            Obx(() {
+                              return indicator(
+                                  size, controller.isSelected[i].value);
+                            })
+                        ],
+                      ),
+                    );
+                  },
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.0.h),
@@ -123,15 +181,35 @@ class CreateEventView extends GetView<CreateEventController> {
                     );
                   }),
                 ),
+
                 KTextField(
                     hintText: "Event Venue (location)",
                     controller: controller.eventVenueController),
                 SizedBox(height: 12.h),
 
+                KTextField(
+                    hintText: "Contact No.",
+                    controller: controller.contactDetails),
+                SizedBox(height: 12.h),
+
+                KTextField(
+                    hintText: "Email Id", controller: controller.emailId),
+                SizedBox(height: 12.h),
+
+                KTextField(
+                    hintText: "Website Link",
+                    controller: controller.websiteLink),
+                SizedBox(height: 12.h),
+
                 GetBuilder<CreateEventController>(
                   builder: (controller) {
                     return Text(
-                        "Event Start Timing : ${controller.eventStartTimings.time},${controller.eventStartTimings.day}-${controller.eventStartTimings.month}-${controller.eventStartTimings.year}");
+                      "Event Start Timing : ${controller.eventStartTimings.time},${controller.eventStartTimings.day}-${controller.eventStartTimings.month}-${controller.eventStartTimings.year}",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    );
                   },
                 ),
 
@@ -139,13 +217,24 @@ class CreateEventView extends GetView<CreateEventController> {
                   onPressed: () {
                     controller.onAddEventTimings(context, true);
                   },
-                  child: Text("Add Event Start Timing"),
+                  child: Text(
+                    "Add Event Start Timing",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
 
                 GetBuilder<CreateEventController>(
                   builder: (controller) {
                     return Text(
-                        "Event End Timing : ${controller.eventEndTimings.time},${controller.eventEndTimings.day}-${controller.eventEndTimings.month}-${controller.eventEndTimings.year}");
+                      "Event End Timing : ${controller.eventEndTimings.time},${controller.eventEndTimings.day}-${controller.eventEndTimings.month}-${controller.eventEndTimings.year}",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    );
                   },
                 ),
 
@@ -153,7 +242,13 @@ class CreateEventView extends GetView<CreateEventController> {
                   onPressed: () {
                     controller.onAddEventTimings(context, false);
                   },
-                  child: Text("Add Event End Timing"),
+                  child: Text(
+                    "Add Event End Timing",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
 
                 // KTextField(
@@ -212,6 +307,9 @@ class CreateEventView extends GetView<CreateEventController> {
                         }),
                   );
                 }),
+                SizedBox(
+                  height: 10.h,
+                ),
                 KButton(
                   title: "Launch Event",
                   onTap: () {
@@ -222,5 +320,19 @@ class CreateEventView extends GetView<CreateEventController> {
             ),
           ),
         ));
+  }
+
+  Widget indicator(Size size, bool isSelected) {
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: Container(
+        height: isSelected ? size.height / 80 : size.height / 100,
+        width: isSelected ? size.height / 80 : size.height / 100,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.black,
+        ),
+      ),
+    );
   }
 }

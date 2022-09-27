@@ -15,14 +15,20 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
         title: Text(
           'Profile',
           style: TextStyle(
+            fontFamily: "ubuntu",
             fontSize: 20.sp,
             fontWeight: FontWeight.w600,
             color: Color(0xff000000),
           ),
         ),
-        leading: Icon(
-          Icons.arrow_back_ios_new,
-          color: Colors.black,
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.black,
+          ),
         ),
         titleSpacing: 1,
         leadingWidth: 50,
@@ -43,13 +49,39 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                     color: AppColor.blocks,
                     borderRadius: BorderRadius.circular(10.r),
                   ),
-                  child: Text(
-                      "${controller.coordinatorModel.email} ${controller.coordinatorModel.name}"),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                      Text(
+                        controller.coordinatorModel.name,
+                        style: TextStyle(
+                            fontSize: 28.sp,
+                            fontFamily: "ubuntu",
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Text(
+                        "Email: ${controller.coordinatorModel.email}",
+                        style: TextStyle(
+                            fontSize: 18.sp,
+                            fontFamily: "ubuntu",
+                            color: Color(0xff99000000),
+                            fontWeight: FontWeight.w500),
+                      )
+                    ],
+                  ),
                 ),
               ),
               Positioned(
                 top: 95,
-                left: 124,
+                left: 120,
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Container(
