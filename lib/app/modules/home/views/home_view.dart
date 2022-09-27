@@ -19,6 +19,7 @@ class HomeView extends GetView<HomeController> {
           "Home",
           style: TextStyle(
             fontSize: 20.sp,
+            fontFamily: "ubuntu",
             fontWeight: FontWeight.w500,
             color: Color(0xff000000),
           ),
@@ -42,7 +43,8 @@ class HomeView extends GetView<HomeController> {
               },
               child: Container(
                 height: 42.h,
-                width: 28.w,
+                width: 30.w,
+                child: Icon(Icons.person, color: Colors.white),
                 decoration: BoxDecoration(
                     color: Color(0xff000000),
                     borderRadius: BorderRadius.all(Radius.circular(8.r))),

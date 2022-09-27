@@ -15,6 +15,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
         title: Text(
           'Profile',
           style: TextStyle(
+            fontFamily: "ubuntu",
             fontSize: 20.sp,
             fontWeight: FontWeight.w600,
             color: Color(0xff000000),
@@ -56,9 +57,10 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                         height: 30.h,
                       ),
                       Text(
-                        "${controller.coordinatorModel.name}",
+                        controller.coordinatorModel.name,
                         style: TextStyle(
                             fontSize: 28.sp,
+                            fontFamily: "ubuntu",
                             color: Colors.black,
                             fontWeight: FontWeight.w600),
                       ),
@@ -69,6 +71,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                         "Email: ${controller.coordinatorModel.email}",
                         style: TextStyle(
                             fontSize: 18.sp,
+                            fontFamily: "ubuntu",
                             color: Color(0xff99000000),
                             fontWeight: FontWeight.w500),
                       )

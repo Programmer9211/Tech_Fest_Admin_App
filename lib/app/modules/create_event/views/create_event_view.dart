@@ -55,7 +55,7 @@ class CreateEventView extends GetView<CreateEventController> {
                   child:
                       GetBuilder<CreateEventController>(builder: (controller) {
                     return Container(
-                      // color: Colors.red,
+                      color: Color(0xffd6d6d6),
                       height: 200.h,
                       width: 430.w,
                       child: PageView.builder(
