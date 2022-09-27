@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:tech_fest_admin_app/app/routes/app_pages.dart';
 
 import '../../../data/widgets/custom_button.dart';
 import '../../../data/widgets/custom_textfield.dart';
@@ -127,19 +128,24 @@ class SignupScreenView extends GetView<SignupScreenController> {
               SizedBox(
                 height: 70.h,
               ),
-              RichText(
-                text: TextSpan(
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500),
-                  children: [
-                    TextSpan(text: "Already have an account? "),
-                    TextSpan(
-                      text: "Sign In",
-                      style: TextStyle(color: Colors.blue),
-                    )
-                  ],
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(Routes.SIGNIN_SCREEN);
+                },
+                child: RichText(
+                  text: TextSpan(
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w500),
+                    children: [
+                      TextSpan(text: "Already have an account? "),
+                      TextSpan(
+                        text: "Sign In",
+                        style: TextStyle(color: Colors.blue),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
